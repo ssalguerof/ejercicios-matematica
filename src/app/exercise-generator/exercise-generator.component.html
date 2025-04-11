@@ -40,47 +40,37 @@
   </form>
 
   <div *ngIf="exercises.length > 0">
-    <h3>Ejercicios Generados:</h3>
-    <div class="row">
-      <div *ngFor="let exercise of exercises; let i = index" class="col-md-3 mb-4 operation-container">
-        <table class="table table-borderless text-center" style="width: auto; margin: 0 auto;">
-          <tbody>
-          <tr>
-            <td></td>
-            <td class="text-end">{{ exercise.num1 }}</td>
-          </tr>
-          <tr>
-            <td class="text-end">
-              <span *ngIf="exercise.operation === 'multiplication'">×</span>
-              <span *ngIf="exercise.operation === 'addition'">+</span>
-              <span *ngIf="exercise.operation === 'subtraction'">-</span>
-            </td>
-            <td class="text-end">{{ exercise.num2 }}</td>
-          </tr>
-          <tr>
-            <td colspan="2" class="text-end">
-              <div class="line"></div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" class="text-end">
-              <input
-                type="number"
-                class="form-control d-inline-block answer-input"
-                style="width: 100px;"
-                [(ngModel)]="exercise.userAnswer"
-                [name]="'answer' + i"
-              />
-            </td>
-          </tr>
-          </tbody>
-        </table>
-        <div *ngIf="exercise.correct !== undefined" class="text-center mt-2">
-          <span *ngIf="exercise.correct" class="text-success">Correcto</span>
-          <span *ngIf="!exercise.correct" class="text-danger">Incorrecto</span>
+    <h3>Ejercicios Generados</h3>
+    <div class="exercise-grid">
+      <div *ngFor="let exercise of exercises; let i = index" class="exercise-item">
+        <div class="numbers">
+          <div class="number">{{ exercise.num1 }}</div>
+          <div class="number">
+            <span *ngIf="exercise.operation === 'addition'">+</span>
+            <span *ngIf="exercise.operation === 'subtraction'">-</span>
+            <span *ngIf="exercise.operation === 'multiplication'">×</span>
+            {{ exercise.num2 }}
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="answer">
+          <input
+            type="number"
+            class="form-control answer-input"
+            [(ngModel)]="exercise.userAnswer"
+            [ngModelOptions]="{ standalone: true }"
+          />
         </div>
       </div>
     </div>
-    <button class="btn btn-success" (click)="evaluateAnswers()">Evaluar Respuestas</button>
+    <button class="btn btn-success mt-3" (click)="validateAnswers()">Validar Respuestas</button>
+    <div *ngFor="let exercise of exercises; let i = index" class="mt-2">
+      <p *ngIf="exercise.isCorrect !== undefined">
+        Ejercicio {{ i + 1 }}:
+        <span [class.text-success]="exercise.isCorrect" [class.text-danger]="!exercise.isCorrect">
+          {{ exercise.isCorrect ? 'Correcto' : 'Incorrecto' }}
+        </span>
+      </p>
+    </div>
   </div>
 </div>

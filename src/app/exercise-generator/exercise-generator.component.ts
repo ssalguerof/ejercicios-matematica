@@ -13,7 +13,7 @@ export class ExerciseGeneratorComponent {
   operation: string = 'addition';
   digits: number = 1;
   count: number = 1;
-  exercises: { num1: number; num2: number; operation: string; answer: number; userAnswer?: number; correct?: boolean }[] = [];
+  exercises: { num1: number; num2: number; operation: string; answer: number; userAnswer?: number; isCorrect?: boolean }[] = [];
 
   generateExercises(): void {
     this.exercises = [];
@@ -38,9 +38,9 @@ export class ExerciseGeneratorComponent {
     }
   }
 
-  evaluateAnswers(): void {
+  validateAnswers(): void {
     this.exercises.forEach(exercise => {
-      exercise.correct = exercise.userAnswer === exercise.answer;
+      exercise.isCorrect = exercise.userAnswer === exercise.answer;
     });
   }
 

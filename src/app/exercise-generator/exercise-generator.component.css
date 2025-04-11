@@ -22,17 +22,35 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Agrega este CSS en el archivo correspondiente */
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 20px; /* Space between items */
+}
+
+.exercise-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align numbers and answers to the right */
+}
+
+.numbers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align numbers to the right */
+}
+
+.number {
+  font-size: 1.2rem;
+}
+
 .line {
   border-top: 2px solid black;
-  width: 100px; /* Coincide con el ancho del campo de entrada */
-  margin: 0 auto;
+  width: 80px; /* Match the input field width */
+  margin: 5px 0;
 }
 
 .answer-input {
-  width: 100px; /* Asegura que el ancho del campo de entrada sea consistente */
-}
-
-.operation-container {
-  margin-bottom: 20px; /* Espacio entre operaciones */
+  width: 80px;
+  text-align: right; /* Align text inside the input field */
 }
