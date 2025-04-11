@@ -1,0 +1,38 @@
+.exercise-generator {
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Agrega este CSS en el archivo correspondiente */
+.line {
+  border-top: 2px solid black;
+  width: 100px; /* Coincide con el ancho del campo de entrada */
+  margin: 0 auto;
+}
+
+.answer-input {
+  width: 100px; /* Asegura que el ancho del campo de entrada sea consistente */
+}
+
+.operation-container {
+  margin-bottom: 20px; /* Espacio entre operaciones */
+}

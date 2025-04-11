@@ -1,0 +1,86 @@
+<div class="exercise-generator container mt-4">
+  <h2>Generador de Ejercicios</h2>
+  <form (ngSubmit)="generateExercises()" #exerciseForm="ngForm" class="mb-4">
+    <div class="mb-3">
+      <label for="operation" class="form-label">Operación:</label>
+      <select id="operation" [(ngModel)]="operation" name="operation" class="form-select" required>
+        <option value="addition">Suma</option>
+        <option value="subtraction">Resta</option>
+        <option value="multiplication">Multiplicación</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="digits" class="form-label">Cantidad de cifras:</label>
+      <input
+        type="number"
+        id="digits"
+        [(ngModel)]="digits"
+        name="digits"
+        class="form-control"
+        min="1"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="count" class="form-label">Cantidad de ejercicios:</label>
+      <input
+        type="number"
+        id="count"
+        [(ngModel)]="count"
+        name="count"
+        class="form-control"
+        min="1"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Generar</button>
+  </form>
+
+  <div *ngIf="exercises.length > 0">
+    <h3>Ejercicios Generados:</h3>
+    <div class="row">
+      <div *ngFor="let exercise of exercises; let i = index" class="col-md-3 mb-4 operation-container">
+        <table class="table table-borderless text-center" style="width: auto; margin: 0 auto;">
+          <tbody>
+          <tr>
+            <td></td>
+            <td class="text-end">{{ exercise.num1 }}</td>
+          </tr>
+          <tr>
+            <td class="text-end">
+              <span *ngIf="exercise.operation === 'multiplication'">×</span>
+              <span *ngIf="exercise.operation === 'addition'">+</span>
+              <span *ngIf="exercise.operation === 'subtraction'">-</span>
+            </td>
+            <td class="text-end">{{ exercise.num2 }}</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-end">
+              <div class="line"></div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-end">
+              <input
+                type="number"
+                class="form-control d-inline-block answer-input"
+                style="width: 100px;"
+                [(ngModel)]="exercise.userAnswer"
+                [name]="'answer' + i"
+              />
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="exercise.correct !== undefined" class="text-center mt-2">
+          <span *ngIf="exercise.correct" class="text-success">Correcto</span>
+          <span *ngIf="!exercise.correct" class="text-danger">Incorrecto</span>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-success" (click)="evaluateAnswers()">Evaluar Respuestas</button>
+  </div>
+</div>
