@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { ExerciseGeneratorComponent } from './exercise-generator/exercise-generator.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ExerciseGeneratorComponent],
+  imports: [RouterModule], // Importa RouterModule aquí
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ejercicios';
+  // Lógica del componente
 }
