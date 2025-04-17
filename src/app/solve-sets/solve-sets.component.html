@@ -1,0 +1,35 @@
+<div class="palette">
+  <button
+    class="btn circle-button"
+    [class.active]="currentTool === 'circle'"
+    (click)="selectTool('circle')"
+  >
+    <span class="circle-icon"></span>
+  </button>
+  <button
+    class="btn eraser-button"
+    [class.active]="currentTool === 'eraser'"
+    (click)="selectTool('eraser')"
+  >
+    🧹
+  </button>
+</div>
+
+<div
+  class="rectangle"
+  (mousedown)="onMouseDown($event)"
+  (mousemove)="onMouseMove($event)"
+  (mouseup)="onMouseUp()"
+>
+  <div
+    *ngFor="let circle of circles; let i = index"
+    class="circle"
+    [ngStyle]="{
+      width: circle.width + 'px',
+      height: circle.height + 'px',
+      left: circle.x + 'px',
+      top: circle.y + 'px'
+    }"
+    (click)="deleteCircle(i)"
+  ></div>
+</div>
